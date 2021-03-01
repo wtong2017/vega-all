@@ -21506,7 +21506,7 @@
 
       const as = _.as || Output$4; // run label layout
 
-      labelLayout(pulse.materialize(pulse.SOURCE).source, _.size, _.sort, array(_.offset || 1), array(_.anchor || Anchors), _.avoidMarks || [], _.avoidBaseMark === false ? false : true, _.lineAnchor || 'end', _.markIndex || 0, _.padding || 0, _.method || 'naive').forEach(l => {
+      labelLayout(pulse.materialize(pulse.SOURCE).source || [], _.size, _.sort, array(_.offset == null ? 1 : _.offset), array(_.anchor || Anchors), _.avoidMarks || [], _.avoidBaseMark !== false, _.lineAnchor || 'end', _.markIndex || 0, _.padding || 0, _.method || 'naive').forEach(l => {
         // write layout results to data stream
         const t = l.datum;
         t[as[0]] = l.x;
@@ -27826,6 +27826,11 @@
     return view;
   }
 
+  async function getCanvasRenderer(scaleFactor, opt) {
+    const r = await renderHeadless(this, RenderType.Canvas, scaleFactor, opt);
+    return r;
+  }
+
   inherits(View, Dataflow, {
     // -- DATAFLOW / RENDERING ----
     async evaluate(encode, prerun, postrun) {
@@ -28078,6 +28083,7 @@
     toImageURL: renderToImageURL,
     toCanvas: renderToCanvas,
     toSVG: renderToSVG,
+    getCanvasRenderer: getCanvasRenderer,
     // -- SAVE / RESTORE STATE ----
     getState: getState$1,
     setState: setState$1
@@ -32428,6 +32434,7 @@
   exports.boundStroke = boundStroke;
   exports.changeset = changeset;
   exports.clampRange = clampRange;
+  exports.codegenExpression = codegen;
   exports.compare = compare;
   exports.constant = constant;
   exports.cumulativeLogNormal = cumulativeLogNormal;
@@ -32504,6 +32511,8 @@
   exports.panPow = panPow;
   exports.panSymlog = panSymlog;
   exports.parse = parse$1$1;
+  exports.parseExpression = parser;
+  exports.parseSelector = eventSelector;
   exports.pathCurves = curves;
   exports.pathEqual = pathEqual;
   exports.pathParse = pathParse;

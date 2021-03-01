@@ -1,5 +1,7 @@
 {
+  "name": "vega",
   "private": true,
+  "version": "0.1.0",
   "license": "BSD-3-Clause",
   "author": "UW Interactive Data Lab (http://idl.cs.washington.edu)",
   "repository": "vega/vega",
@@ -14,8 +16,7 @@
     "serve": "serve packages/vega/ -l 8080",
     "test": "lerna run test && yarn lint",
     "lint": "yarn eslint . --ext .js",
-    "format": "yarn lint --fix",
-    "postinstall": "yarn data"
+    "format": "yarn lint --fix"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

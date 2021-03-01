@@ -10,6 +10,7 @@ import padding from './padding';
 import renderToImageURL from './render-to-image-url';
 import renderToCanvas from './render-to-canvas';
 import renderToSVG from './render-to-svg';
+import renderHeadless from './render-headless';
 import {resizeRenderer} from './render-size';
 import runtime from './runtime';
 import {scale} from './scale';
@@ -141,6 +142,11 @@ function removeOperatorListener(view, op, handler) {
   const h = findOperatorHandler(op, handler);
   if (h) op._targets.remove(h);
   return view;
+}
+
+async function getCanvasRenderer(scaleFactor, opt) {
+  const r = await renderHeadless(this, RenderType.Canvas, scaleFactor, opt);
+  return r;
 }
 
 inherits(View, Dataflow, {
@@ -382,6 +388,7 @@ inherits(View, Dataflow, {
   toImageURL: renderToImageURL,
   toCanvas: renderToCanvas,
   toSVG: renderToSVG,
+  getCanvasRenderer: getCanvasRenderer,
 
   // -- SAVE / RESTORE STATE ----
   getState,

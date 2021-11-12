@@ -6,6 +6,7 @@
   "author": "UW Interactive Data Lab (http://idl.cs.washington.edu)",
   "repository": "vega/vega",
   "scripts": {
+    "build:code-only": "lerna run build",
     "build": "lerna run build && yarn docsbuild",
     "clean": "lerna clean --yes && lerna exec -- rimraf build && lerna exec -- rimraf LICENSE && rimraf node_modules yarn.lock",
     "data": "rsync -r node_modules/vega-datasets/data/* docs/data",
